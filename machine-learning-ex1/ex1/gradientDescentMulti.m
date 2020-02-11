@@ -1,13 +1,13 @@
 function [theta, J_history] = gradientDescentMulti(X, y, theta, alpha, num_iters)
-%GRADIENTDESCENTMULTI Performs gradient descent to learn theta
-%   theta = GRADIENTDESCENTMULTI(x, y, theta, alpha, num_iters) updates theta by
-%   taking num_iters gradient steps with learning rate alpha
+  %GRADIENTDESCENTMULTI Performs gradient descent to learn theta
+  %   theta = GRADIENTDESCENTMULTI(x, y, theta, alpha, num_iters) updates theta by
+  %   taking num_iters gradient steps with learning rate alpha
 
-% Initialize some useful values
-m = length(y); % number of training examples
-J_history = zeros(num_iters, 1);
-
-for iter = 1:num_iters
+  % Initialize some useful values
+  m = length(y); % number of training examples
+  J_history = zeros(num_iters, 1);
+  n = size(X, 2);
+  for iter = 1:num_iters
 
     % ====================== YOUR CODE HERE ======================
     % Instructions: Perform a single gradient step on the parameter vector
@@ -16,22 +16,24 @@ for iter = 1:num_iters
     % Hint: While debugging, it can be useful to print out the values
     %       of the cost function (computeCostMulti) and gradient here.
     %
-
-
-
-
-
-
-
-
-
-
-
+    
+    
+    % original solution:
+    % h = X * theta;  
+    % newTheta = [];
+    % for feature = 1:n
+    %   newTheta(feature, 1) = theta(feature, 1) -  alpha * (1 / m) * sum((h - y) .* X(:, feature));
+    % end
+    % theta = newTheta;
+    
+    % final solution, which is better:
+    theta = theta - alpha / m * ((X * theta - y)' * X)';
+    
     % ============================================================
 
     % Save the cost J in every iteration    
     J_history(iter) = computeCostMulti(X, y, theta);
 
-end
+  end
 
 end

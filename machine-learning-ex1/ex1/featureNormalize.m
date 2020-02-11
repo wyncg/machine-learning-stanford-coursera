@@ -28,7 +28,7 @@ function [X_norm, mu, sigma] = featureNormalize(X)
   mu = mean(X);
   sigma = std(X);
   m = size(X)(1);
-  X_norm = (X - repmat(mean(X), m, 1)) ./ repmat(std(X), m, 1);
+  X_norm = (X - repmat(mu, m, 1)) ./ repmat(sigma, m, 1);
 
   % ============================================================
 
